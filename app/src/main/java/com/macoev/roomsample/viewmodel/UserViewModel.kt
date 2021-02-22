@@ -15,8 +15,6 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
 
     fun insert(vararg users: User) = repository.insert(*users)
 
-    fun insertRandom() = insert(User.createRandom())
-
     fun delete(user: User) = repository.delete(user)
 
     fun deleteAll() = repository.deleteAll()

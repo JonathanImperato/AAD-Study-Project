@@ -8,6 +8,7 @@ import androidx.room.PrimaryKey
 data class User(@PrimaryKey(autoGenerate = true) val id: Int? = null, @ColumnInfo(name = "full_name") var fullName: String = ""){
 
     companion object {
+        @JvmStatic
         fun createRandom() = User().apply {
             fullName = "Utente ${System.currentTimeMillis()}"
         }
