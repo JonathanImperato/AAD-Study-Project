@@ -9,7 +9,7 @@ import kotlinx.coroutines.runBlocking
 
 class FakeRepository : Repository {
 
-    val data = MutableLiveData<List<User>>()
+    private val data = MutableLiveData<List<User>>()
 
     init {
         data.value = emptyList()
@@ -21,45 +21,29 @@ class FakeRepository : Repository {
 
     override fun insert(vararg users: User): Job? {
         runBlocking {
-            getAllUsers().value?.contains(users) ?: return@runBlocking
-            data.value = getAllUsers().value?.plus(users)
+            data.value = data.value?.plus(users.filterNot { data.value?.contains(it) ?: false })
         }
         return null
     }
 
     override fun deleteAll() {
-        getAllUsers().value?.forEach { delete(it) }
+        data.value = emptyList()
     }
 
     override fun delete(user: User): Job? {
         runBlocking {
-            data.value = getAllUsers().value?.minus(user)
+            data.value = data.value?.minus(user)
         }
         return null
     }
 
     override fun findBy(name: String): LiveData<List<User>> {
         return liveData {
-            emit(getAllUsers().value?.filter { it.fullName.contains(name, true) }.orEmpty())
+            emit(data.value?.filter { it.fullName.contains(name, true) }.orEmpty())
         }
     }
 
-    override fun findFirstBy(name: String): LiveData<User?> {
-        return liveData {
-            emit(getAllUsers().value?.firstOrNull {
-                it.fullName.contains(
-                    name,
-                    true
-                )
-            })
-        }
-    }
-
-    override fun findById(id: Int): LiveData<List<User>> {
-        return liveData { emit(getAllUsers().value?.filter { it.id == id }.orEmpty()) }
-    }
-
-    override fun findById(vararg ids: Int): LiveData<List<User>> {
-        return liveData { emit(getAllUsers().value?.filter { it.id!! in ids }.orEmpty()) }
+    override fun findByIds(vararg ids: Int): LiveData<List<User>> {
+        return liveData { emit(data.value?.filter { it.id!! in ids }.orEmpty()) }
     }
 }

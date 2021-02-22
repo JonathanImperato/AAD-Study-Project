@@ -80,6 +80,5 @@ class MainActivityTest {
                 action.perform(uiController, view.findViewById<T>(id))
             }
         }
-
     }
 }

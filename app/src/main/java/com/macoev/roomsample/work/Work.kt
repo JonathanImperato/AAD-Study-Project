@@ -31,16 +31,33 @@ class RequestManager(private val context: Context) {
     @RequiresApi(Build.VERSION_CODES.O)
     inline fun <reified T : Worker> periodic(interval: Duration = Duration.ZERO, tag: String = "") =
         schedule(PeriodicWorkRequestBuilder<T>(interval).addTag(tag).build())
-
+    /**
+     * Send a one time work
+     * @param initialDelay optional request delay
+     * @param tag optional tag
+     */
     @RequiresApi(Build.VERSION_CODES.O)
-    inline fun <reified T : Worker> single(
-        initialDelay: Duration = Duration.ZERO,
-        input: Data = Data.EMPTY,
-        tag: String = ""
-    ) = schedule(
-        OneTimeWorkRequestBuilder<T>().setInitialDelay(initialDelay).setInputData(input).addTag(tag)
-            .build()
-    )
+    inline fun <reified T : Worker> single(initialDelay: Duration = Duration.ZERO, tag: String = "") =
+        schedule(OneTimeWorkRequestBuilder<T>().setInitialDelay(initialDelay).addTag(tag).build())
 
     fun schedule(request: WorkRequest) = WorkManager.getInstance(context).enqueue(request)
+
+    fun Operation.onError(error: (Operation) -> Unit): Operation {
+        state.observeForever {
+            when (it) {
+                is Operation.State.FAILURE -> error(this)
+            }
+        }
+        return this
+    }
+
+    fun Operation.onSuccess(success: (Operation) -> Unit): Operation {
+        state.observeForever {
+            when (it) {
+                is Operation.State.SUCCESS -> success(this)
+            }
+        }
+        return this
+    }
 }
+

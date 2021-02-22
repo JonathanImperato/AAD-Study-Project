@@ -8,8 +8,8 @@ import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.macoev.roomsample.R
-import com.macoev.roomsample.data.repository.Repository
 import com.macoev.roomsample.data.User
+import com.macoev.roomsample.data.repository.Repository
 
 class UserAdapter(val repository: Repository) : RecyclerView.Adapter<UserViewHolder>() {
 

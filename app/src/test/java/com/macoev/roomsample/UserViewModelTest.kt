@@ -32,15 +32,15 @@ class UserViewModelTest {
         }
         u = User.createRandom()
         repository.insert(u)
-
         userViewModel = UserViewModel(context)
     }
 
     @Test
     fun loadAllUser_dataLoaded() {
-        assertThat(userViewModel.getAllUsers().value).isNotNull()
-        assertThat(userViewModel.getAllUsers().value).isNotEmpty()
-        assertThat(userViewModel.getAllUsers().value).contains(u)
+        val data = userViewModel.getAllUsers().value
+        assertThat(data).isNotNull()
+        assertThat(data).isNotEmpty()
+        assertThat(data).contains(u)
     }
 
     @After

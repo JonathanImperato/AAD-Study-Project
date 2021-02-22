@@ -5,18 +5,24 @@ import androidx.lifecycle.AndroidViewModel
 import com.macoev.roomsample.RepositoryLocator
 import com.macoev.roomsample.adapter.UserAdapter
 import com.macoev.roomsample.data.User
+import com.macoev.roomsample.data.repository.Repository
 
 class UserViewModel(application: Application) : AndroidViewModel(application) {
-     val repository = RepositoryLocator.get(application)
-
-    val adapter by lazy { UserAdapter(repository) }
+    private var repository: Repository = RepositoryLocator.get(application)
+    var adapter: UserAdapter = UserAdapter(repository)
 
     fun getAllUsers() = repository.getAllUsers()
+
     fun insert(vararg users: User) = repository.insert(*users)
+
+    fun insertRandom() = insert(User.createRandom())
+
     fun delete(user: User) = repository.delete(user)
+
     fun deleteAll() = repository.deleteAll()
+
     fun findBy(name: String) = repository.findBy(name)
-    fun findFirstBy(name: String) = repository.findFirstBy(name)
-    fun findById(id: Int) = repository.findById(id)
-    fun findById(vararg ids: Int) = repository.findById(*ids)
+
+    fun findById(vararg ids: Int) = repository.findByIds(*ids)
+
 }

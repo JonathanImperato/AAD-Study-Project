@@ -15,7 +15,6 @@ interface UserDao {
     @Query("SELECT * FROM user WHERE full_name LIKE :fullName LIMIT 1")
     fun findFirstByName(fullName: String): LiveData<User?>
 
-
     @Query("SELECT * FROM user WHERE full_name LIKE :fullName")
     fun findByName(fullName: String): LiveData<List<User>>
 

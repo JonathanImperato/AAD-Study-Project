@@ -22,7 +22,11 @@ android {
         exclude 'META-INF/LGPL2.1'
         exclude("META-INF/*.kotlin_module")
     }
+    dataBinding {
+        enabled = true
+    }
 
+    viewBinding.enabled = true
     defaultConfig {
         applicationId "com.macoev.roomsample"
         minSdkVersion 21
