@@ -15,7 +15,7 @@ import java.time.Duration
 
 class MainActivity : AppCompatActivity() {
 
-    val model: UserViewModel by viewModels()
+    private val model: UserViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,5 +38,4 @@ class MainActivity : AppCompatActivity() {
                 }
         }
     }
-
 }

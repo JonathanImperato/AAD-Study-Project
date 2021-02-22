@@ -44,7 +44,7 @@ class UserViewModelTest {
     }
 
     @After
-    fun removeAllUser_dataLoaded() = runBlockingTest {
+    fun removeAllUser() = runBlockingTest {
         userViewModel.deleteAll()
     }
 }

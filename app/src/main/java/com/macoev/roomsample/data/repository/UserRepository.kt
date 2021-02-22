@@ -5,7 +5,7 @@ import com.macoev.roomsample.data.UserDao
 import kotlinx.coroutines.*
 
 class UserRepository(private val dao: UserDao) : Repository {
-    private val scope get() = CoroutineScope(Job() + Dispatchers.IO)
+    private val scope = CoroutineScope(Job() + Dispatchers.IO)
 
     override fun getAllUsers() = dao.getAll()
 

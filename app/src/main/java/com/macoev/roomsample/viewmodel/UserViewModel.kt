@@ -8,7 +8,9 @@ import com.macoev.roomsample.data.User
 import com.macoev.roomsample.data.repository.Repository
 
 class UserViewModel(application: Application) : AndroidViewModel(application) {
+
     private var repository: Repository = RepositoryLocator.get(application)
+
     var adapter: UserAdapter = UserAdapter(repository)
 
     fun getAllUsers() = repository.getAllUsers()
@@ -22,5 +24,4 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
     fun findBy(name: String) = repository.findBy(name)
 
     fun findById(vararg ids: Int) = repository.findByIds(*ids)
-
 }
