@@ -1,2 +1,2 @@
 # AAD-Study-Project
-Sample Project used to study for AAD certification
+Study project for AAD certification
