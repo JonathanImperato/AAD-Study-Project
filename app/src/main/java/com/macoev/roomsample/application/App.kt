@@ -1,6 +1,7 @@
 package com.macoev.roomsample.application
 
 import android.app.Application
+import com.macoev.roomsample.RepositoryLocator
 import com.macoev.roomsample.viewmodel.UserViewModel
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -14,10 +15,14 @@ class App : Application() {
         startKoin {
             androidLogger()
             androidContext(this@App)
-            modules(listOf(viewModelModule))
+            modules(listOf(viewModelModule, repositoryModule))
         }
     }
 }
+
 val viewModelModule = module {
-    factory { UserViewModel( get()) }
+    factory { UserViewModel(get()) }
+}
+val repositoryModule = module {
+    factory { RepositoryLocator.get(get()) }
 }

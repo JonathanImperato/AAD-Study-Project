@@ -91,8 +91,6 @@ dependencies {
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
 
-    // Koin
-    implementation "org.koin:koin-core:$koin_version"
     // Koin for Android
     implementation "org.koin:koin-android:$koin_version"
     // Koin AndroidX Scope features

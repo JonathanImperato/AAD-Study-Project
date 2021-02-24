@@ -10,7 +10,7 @@ import com.macoev.roomsample.viewmodel.UserViewModel
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 class UserDetailFragment : Fragment() {
-    
+
     private lateinit var binding: UserDetailFragmentBinding
     private val viewModel: UserViewModel by sharedViewModel()
 //    private val args: UserDetailFragmentArguments by navArgs()
