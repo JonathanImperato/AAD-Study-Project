@@ -12,8 +12,10 @@ import com.macoev.roomsample.viewmodel.UserViewModel
 import com.macoev.roomsample.work.DownloadWork
 import com.macoev.roomsample.work.RequestManager
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.core.component.KoinApiExtension
 import java.time.Duration
 
+@KoinApiExtension
 class MainActivity : AppCompatActivity() {
 
     private val model: UserViewModel by viewModel()

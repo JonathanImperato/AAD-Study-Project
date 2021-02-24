@@ -29,7 +29,7 @@ android {
 
     viewBinding.enabled = true
     defaultConfig {
-        applicationId "com.macoev.roomsample"
+        applicationId "com.macoev.aadstudyproject"
         minSdkVersion 21
         targetSdkVersion 28
         versionCode 1

@@ -8,7 +8,9 @@ import androidx.fragment.app.Fragment
 import com.macoev.roomsample.databinding.UserDetailFragmentBinding
 import com.macoev.roomsample.viewmodel.UserViewModel
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
+import org.koin.core.component.KoinApiExtension
 
+@KoinApiExtension
 class UserDetailFragment : Fragment() {
 
     private lateinit var binding: UserDetailFragmentBinding

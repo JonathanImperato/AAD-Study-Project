@@ -11,7 +11,8 @@ import com.macoev.roomsample.R
 import com.macoev.roomsample.data.User
 import com.macoev.roomsample.data.repository.Repository
 
-class UserAdapter(val repository: Repository, val tap: (User) -> Unit) : RecyclerView.Adapter<UserViewHolder>() {
+class UserAdapter(private val repository: Repository, private val tap: (User) -> Unit) :
+    RecyclerView.Adapter<UserViewHolder>() {
 
     private var data: ArrayList<User> = arrayListOf()
 
