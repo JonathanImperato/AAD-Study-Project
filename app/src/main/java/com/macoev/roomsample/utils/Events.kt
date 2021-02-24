@@ -1,6 +1,5 @@
 package com.macoev.roomsample.utils
 
-import androidx.annotation.Nullable
 import androidx.lifecycle.Observer
 
 open class Event<out T>(private val content: T?) {
@@ -26,8 +25,8 @@ open class Event<out T>(private val content: T?) {
     fun getContent(): T? = content
 }
 
-open class EventObserver<T>(private val onEventChanged: (T) -> Unit) : Observer<Event<T>?> {
-    override fun onChanged(t: Event<T>?) {
+open class EventObserver<T>(private val onEventChanged: (T) -> Unit) : Observer<Event<T?>?> {
+    override fun onChanged(t: Event<T?>?) {
         t?.getUnhandledContent()?.let(onEventChanged)
     }
 }
