@@ -12,11 +12,11 @@ open class UserViewModel(application: Application) : AndroidViewModel(applicatio
 
     private var repository: Repository = RepositoryLocator.get(application)
 
-    val tap: (User) -> Unit = { user -> selectedUser.value = user }
+    val tap: (User) -> Unit = { user -> selectedUser.value = Event(user) }
 
     var adapter: UserAdapter = UserAdapter(repository, tap)
 
-    var selectedUser = MutableLiveData<User?>()
+    var selectedUser = MutableLiveData<Event<User?>>()
         private set
 
     fun getAllUsers() = repository.getAllUsers()
@@ -30,4 +30,27 @@ open class UserViewModel(application: Application) : AndroidViewModel(applicatio
     fun findBy(name: String) = repository.findBy(name)
 
     fun findById(vararg ids: Int) = repository.findByIds(*ids)
+}
+
+open class Event<out T>(private val content: T?) {
+
+    var hasBeenHandled = false
+        private set // Allow external read but not write
+
+    /**
+     * Returns the content and prevents its use again.
+     */
+    fun getUnhandledContent(): T? {
+        return if (hasBeenHandled) {
+            null
+        } else {
+            hasBeenHandled = true
+            content
+        }
+    }
+
+    /**
+     * Returns the content, even if it's already been handled.
+     */
+    fun getContent(): T? = content
 }

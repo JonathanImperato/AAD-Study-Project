@@ -23,7 +23,7 @@
             android:layout_height="match_parent"
             tools:text="Text"
             style="@style/TextAppearance.MaterialComponents.Body1"
-            android:text="@{viewModel.selectedUser.toString()}" />
+            android:text="@{viewModel.selectedUser.content.toString()}" />
 
     </FrameLayout>
 </layout>
