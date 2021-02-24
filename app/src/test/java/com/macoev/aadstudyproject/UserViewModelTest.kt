@@ -1,12 +1,12 @@
-package com.macoev.roomsample
+package com.macoev.aadstudyproject
 
 import android.app.Application
 import androidx.test.core.app.ApplicationProvider
 import com.google.common.truth.Truth.assertThat
-import com.macoev.roomsample.data.repository.FakeRepository
-import com.macoev.roomsample.data.repository.Repository
-import com.macoev.roomsample.data.User
-import com.macoev.roomsample.viewmodel.UserViewModel
+import com.macoev.aadstudyproject.data.repository.FakeRepository
+import com.macoev.aadstudyproject.data.repository.Repository
+import com.macoev.aadstudyproject.data.User
+import com.macoev.aadstudyproject.viewmodel.UserViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runBlockingTest
 import org.junit.After

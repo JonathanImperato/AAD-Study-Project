@@ -1,4 +1,4 @@
-package com.macoev.roomsample.fragment
+package com.macoev.aadstudyproject.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,9 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.macoev.roomsample.databinding.MainFragmentBinding
-import com.macoev.roomsample.utils.EventObserver
-import com.macoev.roomsample.viewmodel.UserViewModel
+import com.macoev.aadstudyproject.databinding.MainFragmentBinding
+import com.macoev.aadstudyproject.utils.EventObserver
+import com.macoev.aadstudyproject.viewmodel.UserViewModel
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.koin.core.component.KoinApiExtension
 

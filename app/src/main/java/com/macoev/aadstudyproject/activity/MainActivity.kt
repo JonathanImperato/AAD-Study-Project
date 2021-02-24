@@ -1,4 +1,4 @@
-package com.macoev.roomsample.activity
+package com.macoev.aadstudyproject.activity
 
 import android.os.Build
 import android.os.Bundle
@@ -6,11 +6,11 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import com.macoev.roomsample.R
-import com.macoev.roomsample.databinding.ActivityMainBinding
-import com.macoev.roomsample.viewmodel.UserViewModel
-import com.macoev.roomsample.work.DownloadWork
-import com.macoev.roomsample.work.RequestManager
+import com.macoev.aadstudyproject.R
+import com.macoev.aadstudyproject.databinding.ActivityMainBinding
+import com.macoev.aadstudyproject.viewmodel.UserViewModel
+import com.macoev.aadstudyproject.work.DownloadWork
+import com.macoev.aadstudyproject.work.RequestManager
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.component.KoinApiExtension
 import java.time.Duration
@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding: ActivityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        val binding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
         binding.viewModel = model
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             syncServer()

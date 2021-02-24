@@ -1,4 +1,4 @@
-package com.macoev.roomsample.data
+package com.macoev.aadstudyproject.data
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
@@ -21,8 +21,8 @@ interface UserDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE) //AUTO GENERATED IDS WILL CHANGE WHEN ROWS GET REPLACED
     fun insertOrUpdate(vararg users: User)
 
-    //@Update
-    //fun update(user: User)
+    @Update
+    fun update(user: User)
 
     @Delete
     fun delete(user: User)

@@ -4,11 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <import type="com.macoev.roomsample.data.User" />
+        <import type="com.macoev.aadstudyproject.data.User" />
 
         <variable
             name="viewModel"
-            type="com.macoev.roomsample.viewmodel.UserViewModel" />
+            type="com.macoev.aadstudyproject.viewmodel.UserViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

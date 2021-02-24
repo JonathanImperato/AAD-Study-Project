@@ -7,13 +7,13 @@
 
     <fragment
         android:id="@+id/userDetailFragment"
-        android:name="com.macoev.roomsample.fragment.UserDetailFragment"
+        android:name="com.macoev.aadstudyproject.fragment.UserDetailFragment"
         android:label="UserDetailFragment"
-        tools:layout="@layout/user_detail_fragment">
-    </fragment>
+        tools:layout="@layout/user_detail_fragment"/>
+
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.macoev.roomsample.fragment.MainFragment"
+        android:name="com.macoev.aadstudyproject.fragment.MainFragment"
         android:label="MainFragment"
         tools:layout="@layout/main_fragment">
         <action
@@ -23,7 +23,7 @@
             app:exitAnim="@anim/fragment_open_exit"
             app:popEnterAnim="@anim/fragment_close_enter"
             app:popExitAnim="@anim/fragment_close_exit"
-            app:popUpTo="@id/mainFragment"  />
+            app:popUpTo="@id/mainFragment" />
     </fragment>
 
 

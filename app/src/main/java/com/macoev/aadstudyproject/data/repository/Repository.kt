@@ -1,9 +1,7 @@
-package com.macoev.roomsample.data.repository
+package com.macoev.aadstudyproject.data.repository
 
 import androidx.lifecycle.LiveData
-import com.macoev.roomsample.data.User
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
+import com.macoev.aadstudyproject.data.User
 import kotlinx.coroutines.Job
 
 interface Repository {

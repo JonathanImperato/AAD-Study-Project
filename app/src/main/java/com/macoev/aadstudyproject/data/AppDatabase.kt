@@ -1,6 +1,8 @@
-package com.macoev.roomsample.data
+package com.macoev.aadstudyproject.data
 
 import android.content.Context
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
@@ -9,7 +11,6 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
-
 
 @Database(entities = [User::class], version = 6)
 internal abstract class AppDatabase : RoomDatabase() {

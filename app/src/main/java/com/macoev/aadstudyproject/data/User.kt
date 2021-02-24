@@ -1,4 +1,4 @@
-package com.macoev.roomsample.data
+package com.macoev.aadstudyproject.data
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
@@ -17,5 +17,4 @@ data class User(@PrimaryKey(autoGenerate = true) val id: Int? = null, @ColumnInf
     override fun toString(): String {
         return "User(id=$id, fullName='$fullName')"
     }
-
 }

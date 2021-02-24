@@ -1,7 +1,7 @@
-package com.macoev.roomsample.data.repository
+package com.macoev.aadstudyproject.data.repository
 
-import com.macoev.roomsample.data.User
-import com.macoev.roomsample.data.UserDao
+import com.macoev.aadstudyproject.data.User
+import com.macoev.aadstudyproject.data.UserDao
 import kotlinx.coroutines.*
 
 class UserRepository(private val dao: UserDao) : Repository {

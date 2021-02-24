@@ -1,12 +1,12 @@
-package com.macoev.roomsample.viewmodel
+package com.macoev.aadstudyproject.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import com.macoev.roomsample.adapter.UserAdapter
-import com.macoev.roomsample.data.User
-import com.macoev.roomsample.data.repository.Repository
-import com.macoev.roomsample.utils.Event
+import com.macoev.aadstudyproject.adapter.UserAdapter
+import com.macoev.aadstudyproject.data.User
+import com.macoev.aadstudyproject.data.repository.Repository
+import com.macoev.aadstudyproject.utils.Event
 import org.koin.core.component.KoinApiExtension
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject

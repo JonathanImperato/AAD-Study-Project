@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <import type="com.macoev.roomsample.data.User" />
-        <variable name="viewModel" type="com.macoev.roomsample.viewmodel.UserViewModel" />
+        <import type="com.macoev.aadstudyproject.data.User" />
+        <variable name="viewModel" type="com.macoev.aadstudyproject.viewmodel.UserViewModel" />
     </data>
 
     <FrameLayout

@@ -1,11 +1,11 @@
-package com.macoev.roomsample
+package com.macoev.aadstudyproject
 
 import android.app.Application
 import androidx.annotation.VisibleForTesting
-import com.macoev.roomsample.data.AppDatabase
-import com.macoev.roomsample.data.UserDao
-import com.macoev.roomsample.data.repository.Repository
-import com.macoev.roomsample.data.repository.UserRepository
+import com.macoev.aadstudyproject.data.AppDatabase
+import com.macoev.aadstudyproject.data.UserDao
+import com.macoev.aadstudyproject.data.repository.Repository
+import com.macoev.aadstudyproject.data.repository.UserRepository
 
 object RepositoryLocator {
 

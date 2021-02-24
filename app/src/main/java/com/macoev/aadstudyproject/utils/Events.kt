@@ -1,4 +1,4 @@
-package com.macoev.roomsample.utils
+package com.macoev.aadstudyproject.utils
 
 import androidx.lifecycle.Observer
 

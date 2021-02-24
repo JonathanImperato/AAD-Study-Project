@@ -1,9 +1,9 @@
-package com.macoev.roomsample.data.repository
+package com.macoev.aadstudyproject.data.repository
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.liveData
-import com.macoev.roomsample.data.User
+import com.macoev.aadstudyproject.data.User
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.runBlocking
 

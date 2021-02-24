@@ -1,12 +1,12 @@
-package com.macoev.roomsample.fragment
+package com.macoev.aadstudyproject.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.macoev.roomsample.databinding.UserDetailFragmentBinding
-import com.macoev.roomsample.viewmodel.UserViewModel
+import com.macoev.aadstudyproject.databinding.UserDetailFragmentBinding
+import com.macoev.aadstudyproject.viewmodel.UserViewModel
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.koin.core.component.KoinApiExtension
 
@@ -21,7 +21,7 @@ class UserDetailFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = UserDetailFragmentBinding.inflate(inflater, container, false)
         return binding.root
     }
