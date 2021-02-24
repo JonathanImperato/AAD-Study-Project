@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout  xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.macoev.roomsample.data.User" />
+
+        <variable
+            name="viewModel"
+            type="com.macoev.roomsample.viewmodel.UserViewModel" />
+
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="8dp"
+        tools:context=".fragment.UserDetailFragment">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:text="Text"
+            style="@style/TextAppearance.MaterialComponents.Body1"
+            android:text="@{viewModel.selectedUser.toString()}" />
+
+    </FrameLayout>
+</layout>

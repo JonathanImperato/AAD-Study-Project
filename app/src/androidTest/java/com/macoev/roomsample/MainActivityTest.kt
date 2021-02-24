@@ -16,6 +16,7 @@ import androidx.test.espresso.matcher.ViewMatchers.hasChildCount
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.SmallTest
+import com.macoev.roomsample.activity.MainActivity
 import com.macoev.roomsample.adapter.UserViewHolder
 import com.macoev.roomsample.data.repository.Repository
 import org.hamcrest.Matcher

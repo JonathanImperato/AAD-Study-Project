@@ -2,16 +2,22 @@ package com.macoev.roomsample.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.MutableLiveData
 import com.macoev.roomsample.RepositoryLocator
 import com.macoev.roomsample.adapter.UserAdapter
 import com.macoev.roomsample.data.User
 import com.macoev.roomsample.data.repository.Repository
 
-class UserViewModel(application: Application) : AndroidViewModel(application) {
+open class UserViewModel(application: Application) : AndroidViewModel(application) {
 
     private var repository: Repository = RepositoryLocator.get(application)
 
-    var adapter: UserAdapter = UserAdapter(repository)
+    val tap: (User) -> Unit = { user -> selectedUser.value = user }
+
+    var adapter: UserAdapter = UserAdapter(repository, tap)
+
+    var selectedUser = MutableLiveData<User?>()
+        private set
 
     fun getAllUsers() = repository.getAllUsers()
 

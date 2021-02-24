@@ -13,4 +13,9 @@ data class User(@PrimaryKey(autoGenerate = true) val id: Int? = null, @ColumnInf
             fullName = "Utente ${System.currentTimeMillis()}"
         }
     }
+
+    override fun toString(): String {
+        return "User(id=$id, fullName='$fullName')"
+    }
+
 }

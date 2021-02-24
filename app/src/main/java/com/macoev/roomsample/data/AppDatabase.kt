@@ -45,10 +45,10 @@ internal abstract class AppDatabase : RoomDatabase() {
             override fun onOpen(db: SupportSQLiteDatabase) {
                 scope.launch {
                     INSTANCE?.userDao()?.run {
-                        if (getAll().value?.isNullOrEmpty() == true) {
+                        if (findAll().value?.isNullOrEmpty() == true) {
                             deleteAll()
                             for (i in 0..10) {
-                                insertAll(User.createRandom())
+                                insertOrUpdate(User.createRandom())
                             }
                         }
                     }

@@ -1,27 +1,27 @@
-package com.macoev.roomsample
+package com.macoev.roomsample.activity
 
 import android.os.Build
 import android.os.Bundle
 import android.widget.Toast
-import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import com.macoev.roomsample.R
 import com.macoev.roomsample.databinding.ActivityMainBinding
 import com.macoev.roomsample.viewmodel.UserViewModel
 import com.macoev.roomsample.work.DownloadWork
 import com.macoev.roomsample.work.RequestManager
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.time.Duration
 
 class MainActivity : AppCompatActivity() {
 
-    private val model: UserViewModel by viewModels()
+    private val model: UserViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
+        val binding: ActivityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         binding.viewModel = model
-
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             syncServer()
         }
@@ -32,10 +32,15 @@ class MainActivity : AppCompatActivity() {
         RequestManager(applicationContext).run {
             periodic<DownloadWork>(interval = Duration.ofMinutes(15))
                 .onError {
-                    Toast.makeText(this@MainActivity, "onError called", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(applicationContext, "onError called", Toast.LENGTH_SHORT).show()
                 }.onSuccess {
-                    Toast.makeText(this@MainActivity, "onSuccess called", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(applicationContext, "onSuccess called", Toast.LENGTH_SHORT)
+                        .show()
                 }
         }
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
     }
 }

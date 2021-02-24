@@ -11,7 +11,7 @@ import com.macoev.roomsample.R
 import com.macoev.roomsample.data.User
 import com.macoev.roomsample.data.repository.Repository
 
-class UserAdapter(val repository: Repository) : RecyclerView.Adapter<UserViewHolder>() {
+class UserAdapter(val repository: Repository, val tap: (User) -> Unit) : RecyclerView.Adapter<UserViewHolder>() {
 
     private var data: ArrayList<User> = arrayListOf()
 
@@ -31,13 +31,13 @@ class UserAdapter(val repository: Repository) : RecyclerView.Adapter<UserViewHol
         val u = data[position]
         holder.run {
             fullName.text = u.fullName
-            delete.setOnClickListener {
-                repository.delete(u)
-            }
+            delete.setOnClickListener { repository.delete(u) }
+            itemView.setOnClickListener { tap(u) }
         }
     }
 
     override fun getItemCount() = data.size
+
 }
 
 class UserViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
