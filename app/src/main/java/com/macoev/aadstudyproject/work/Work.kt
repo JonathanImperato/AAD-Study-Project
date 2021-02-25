@@ -15,6 +15,8 @@ class DownloadWork(appContext: Context, workerParameters: WorkerParameters) :
 
     override fun doWork(): Result {
         val doAction = Any() //perform network call
+        // Sleep on a background thread.
+        Thread.sleep(1000)
         val res = Result.success()
         return if (retryCount++ < maxRetryCount && res != Result.success()) Result.retry()
         else res

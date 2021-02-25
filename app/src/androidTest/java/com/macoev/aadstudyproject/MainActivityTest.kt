@@ -1,6 +1,7 @@
 package com.macoev.aadstudyproject
 
 import android.app.Application
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import androidx.annotation.IdRes
@@ -9,36 +10,54 @@ import androidx.test.core.app.ApplicationProvider
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.UiController
 import androidx.test.espresso.ViewAction
-import androidx.test.espresso.action.ViewActions.*
+import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.contrib.RecyclerViewActions
-import androidx.test.espresso.matcher.ViewMatchers.hasChildCount
-import androidx.test.espresso.matcher.ViewMatchers.withId
+import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.SmallTest
+import androidx.work.Configuration
+import androidx.work.Operation
+import androidx.work.await
+import androidx.work.testing.SynchronousExecutor
+import androidx.work.testing.WorkManagerTestInitHelper
 import com.macoev.aadstudyproject.activity.MainActivity
 import com.macoev.aadstudyproject.adapter.UserViewHolder
+import com.macoev.aadstudyproject.data.entity.User
 import com.macoev.aadstudyproject.data.repository.Repository
+import com.macoev.aadstudyproject.work.DownloadWork
+import com.macoev.aadstudyproject.work.RequestManager
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.test.runBlockingTest
 import org.hamcrest.Matcher
+import org.hamcrest.Matchers.`is`
 import org.hamcrest.Matchers.any
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.koin.core.component.KoinApiExtension
 
 @SmallTest
+@KoinApiExtension
+@ExperimentalCoroutinesApi
 @RunWith(AndroidJUnit4::class)
 class MainActivityTest {
 
-    private lateinit var repository: Repository
+    private lateinit var repository: Repository<User>
     private val context = ApplicationProvider.getApplicationContext<Application>()
-
 
 //    @get:Rule
 //    val activityRule = ActivityScenarioRule(MainActivity::class.java)
 
     @Before
     fun init() {
+        val config = Configuration.Builder()
+            .setMinimumLoggingLevel(Log.DEBUG)
+            .setExecutor(SynchronousExecutor())
+            .build()
+        // Initialize WorkManager for instrumentation tests.
+        WorkManagerTestInitHelper.initializeTestWorkManager(context, config)
         repository = RepositoryLocator.getUser(context)
         repository.deleteAll()
     }
@@ -46,6 +65,14 @@ class MainActivityTest {
     @After
     fun reset() {
         repository.deleteAll()
+    }
+
+    @Test
+    fun testSleepWorker() = runBlockingTest {
+        val worker = RequestManager(context).single<DownloadWork>()
+        val res = worker.result.await()
+//        assertThat(res, isA(Operation.State.SUCCESS::class.java))
+        assertThat(res, `is`(Operation.SUCCESS))
     }
 
     @Test

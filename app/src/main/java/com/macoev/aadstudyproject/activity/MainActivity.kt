@@ -36,8 +36,7 @@ class MainActivity : AppCompatActivity() {
                 .onError {
                     Toast.makeText(applicationContext, "onError called", Toast.LENGTH_SHORT).show()
                 }.onSuccess {
-                    Toast.makeText(applicationContext, "onSuccess called", Toast.LENGTH_SHORT)
-                        .show()
+                    Toast.makeText(applicationContext, "onSuccess called", Toast.LENGTH_SHORT).show()
                 }
         }
     }
