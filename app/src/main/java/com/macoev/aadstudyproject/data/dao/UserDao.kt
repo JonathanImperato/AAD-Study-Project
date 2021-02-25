@@ -1,6 +1,7 @@
 package com.macoev.aadstudyproject.data.dao
 
 import androidx.lifecycle.LiveData
+import androidx.paging.DataSource
 import androidx.room.*
 import com.macoev.aadstudyproject.data.entity.User
 
@@ -9,6 +10,9 @@ interface UserDao {
 
     @Query("SELECT * FROM user")
     fun findAll(): LiveData<List<User>>
+
+    @Query("SELECT * FROM user ORDER BY time ASC")
+    fun findAllByTime(): DataSource.Factory<Int, User>
 
     @Query("SELECT * FROM user WHERE id IN (:userIds)")
     fun findByIds(userIds: IntArray): LiveData<List<User>>

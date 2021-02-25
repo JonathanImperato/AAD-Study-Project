@@ -5,16 +5,17 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity
-data class User(@PrimaryKey(autoGenerate = true) val id: Int? = null, @ColumnInfo(name = "full_name") var fullName: String = ""){
+data class User(@PrimaryKey(autoGenerate = true) val id: Int? = null, @ColumnInfo(name = "full_name") var fullName: String = "", var time : Long = System.currentTimeMillis()){
 
     companion object {
         @JvmStatic
         fun createRandom() = User().apply {
-            fullName = "Utente ${System.currentTimeMillis()}"
+            time = System.currentTimeMillis()
+            fullName = "Utente $time"
         }
     }
 
     override fun toString(): String {
-        return "User(id=$id, fullName='$fullName')"
+        return "User(id=$id, fullName='$fullName', time='$time')"
     }
 }

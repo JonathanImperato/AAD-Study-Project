@@ -1,6 +1,7 @@
 package com.macoev.aadstudyproject.data.repository
 
 import androidx.lifecycle.LiveData
+import androidx.paging.PagedList
 import kotlinx.coroutines.Job
 
 interface Repository<E> {
@@ -15,4 +16,6 @@ interface Repository<E> {
     fun findByIds(vararg ids: Int): LiveData<List<E>>
 
     fun deleteAll()
+
+    fun getAllByTime() : LiveData<PagedList<E>>? {  return null  }
 }

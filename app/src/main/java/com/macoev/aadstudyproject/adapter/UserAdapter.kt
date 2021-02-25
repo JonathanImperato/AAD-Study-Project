@@ -5,21 +5,33 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import androidx.paging.PagedList
+import androidx.paging.PagedListAdapter
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.macoev.aadstudyproject.R
 import com.macoev.aadstudyproject.data.entity.User
 import com.macoev.aadstudyproject.data.repository.Repository
 
 class UserAdapter(private val repository: Repository<User>, private val tap: (User) -> Unit) :
-    RecyclerView.Adapter<UserViewHolder>() {
-
-    private var data: ArrayList<User> = arrayListOf()
+    PagedListAdapter<User, UserViewHolder>(DIFF_CALLBACK) {
 
     init {
-        repository.getAll().observeForever {
-            data.clear()
-            data.addAll(it)
-            notifyDataSetChanged()
+        repository.getAllByTime()?.observeForever {
+            submitList(it)
+        }
+    }
+
+    companion object {
+        private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<User>() {
+            // The ID property identifies when items are the same.
+            override fun areItemsTheSame(oldItem: User, newItem: User) =
+                oldItem.id == newItem.id
+
+            // If you use the "==" operator, make sure that the object implements
+            // .equals(). Alternatively, write custom data comparison logic here.
+            override fun areContentsTheSame(
+                oldItem: User, newItem: User) = oldItem == newItem
         }
     }
 
@@ -28,7 +40,7 @@ class UserAdapter(private val repository: Repository<User>, private val tap: (Us
     }
 
     override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
-        val u = data[position]
+        val u = getItem(position) ?: return
         holder.run {
             fullName.text = u.fullName
             delete.setOnClickListener { repository.delete(u) }
@@ -36,7 +48,6 @@ class UserAdapter(private val repository: Repository<User>, private val tap: (Us
         }
     }
 
-    override fun getItemCount() = data.size
 
 }
 

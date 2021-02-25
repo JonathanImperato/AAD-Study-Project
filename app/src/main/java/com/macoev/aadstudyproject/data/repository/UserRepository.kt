@@ -1,5 +1,8 @@
 package com.macoev.aadstudyproject.data.repository
 
+import androidx.lifecycle.LiveData
+import androidx.paging.PagedList
+import androidx.paging.toLiveData
 import com.macoev.aadstudyproject.data.entity.User
 import com.macoev.aadstudyproject.data.dao.UserDao
 import kotlinx.coroutines.*
@@ -8,6 +11,8 @@ class UserRepository(private val dao: UserDao) : Repository<User> {
     private val scope = CoroutineScope(Job() + Dispatchers.IO)
 
     override fun getAll() = dao.findAll()
+
+    override fun getAllByTime() : LiveData<PagedList<User>> = dao.findAllByTime().toLiveData(pageSize = 10)
 
     override fun insert(vararg users: User) = scope.launch { dao.insertOrUpdate(*users) }
 
