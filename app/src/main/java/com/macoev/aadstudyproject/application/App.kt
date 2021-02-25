@@ -26,5 +26,5 @@ val viewModelModule = module {
     factory { UserViewModel(get()) }
 }
 val repositoryModule = module {
-    factory { RepositoryLocator.get(get()) }
+    factory { RepositoryLocator.getUser(get()) }
 }

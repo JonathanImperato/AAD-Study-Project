@@ -3,11 +3,11 @@ package com.macoev.aadstudyproject.data.repository
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.liveData
-import com.macoev.aadstudyproject.data.User
+import com.macoev.aadstudyproject.data.entity.User
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.runBlocking
 
-class FakeRepository : Repository {
+class FakeRepository : Repository<User> {
 
     private val data = MutableLiveData<List<User>>()
 
@@ -15,7 +15,7 @@ class FakeRepository : Repository {
         data.value = emptyList()
     }
 
-    override fun getAllUsers(): LiveData<List<User>> {
+    override fun getAll(): LiveData<List<User>> {
         return data
     }
 

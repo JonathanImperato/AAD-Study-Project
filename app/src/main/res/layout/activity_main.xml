@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <import type="com.macoev.aadstudyproject.data.User" />
+        <import type="com.macoev.aadstudyproject.data.entity.User" />
 
         <variable
             name="viewModel"

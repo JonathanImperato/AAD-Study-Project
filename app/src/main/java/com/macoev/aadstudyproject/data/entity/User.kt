@@ -1,4 +1,4 @@
-package com.macoev.aadstudyproject.data
+package com.macoev.aadstudyproject.data.entity
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

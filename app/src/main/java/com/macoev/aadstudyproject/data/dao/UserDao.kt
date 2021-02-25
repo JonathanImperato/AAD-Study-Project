@@ -1,7 +1,8 @@
-package com.macoev.aadstudyproject.data
+package com.macoev.aadstudyproject.data.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
+import com.macoev.aadstudyproject.data.entity.User
 
 @Dao
 interface UserDao {
@@ -29,4 +30,6 @@ interface UserDao {
 
     @Query("DELETE FROM user")
     fun deleteAll()
+
+    fun isEmpty() = findAll().value?.isNullOrEmpty()
 }

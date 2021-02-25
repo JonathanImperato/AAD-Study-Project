@@ -1,4 +1,4 @@
-package com.macoev.aadstudyproject.data
+package com.macoev.aadstudyproject.data.dao
 
 import android.os.Build
 import androidx.annotation.RequiresApi
@@ -7,6 +7,7 @@ import androidx.sqlite.db.SimpleSQLiteQuery
 import androidx.sqlite.db.SupportSQLiteQuery
 import java.lang.reflect.ParameterizedType
 
+@Suppress("MemberVisibilityCanBePrivate")
 @RequiresApi(Build.VERSION_CODES.P)
 @Dao
 abstract class BaseDao<E>  {
@@ -17,10 +18,10 @@ abstract class BaseDao<E>  {
     fun all() = all(SimpleSQLiteQuery("SELECT * FROM $tableName}"))
 
     @Delete
-    abstract fun delete(entity: E)
+    abstract fun delete(vararg entity: E)
 
     @Update
-    abstract fun update(entity: E)
+    abstract fun update(vararg entity: E)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE) //AUTO GENERATED IDS WILL CHANGE WHEN ROWS GET REPLACED
     abstract fun insertOrUpdate(vararg entities: E)
@@ -29,7 +30,7 @@ abstract class BaseDao<E>  {
     abstract fun insert(vararg entities: E)
 
     @RawQuery
-    abstract fun deleteAll(query: SupportSQLiteQuery): List<E>
+    abstract fun deleteAll(query: SupportSQLiteQuery)
 
     fun deleteAll() = deleteAll(SimpleSQLiteQuery("DELETE FROM $tableName"))
 
@@ -42,6 +43,8 @@ abstract class BaseDao<E>  {
     fun findBy(key: String, value: ShortArray) = findBy(SimpleSQLiteQuery("SELECT * FROM $tableName WHERE $key IN ($value)"))
     fun findBy(key: String, value: DoubleArray) = findBy(SimpleSQLiteQuery("SELECT * FROM $tableName WHERE $key IN ($value)"))
     fun findBy(key: String, vararg value: String) = findBy(SimpleSQLiteQuery("SELECT * FROM $tableName WHERE $key IN ($value)"))
+
+    fun isEmpty() = all().isNullOrEmpty()
 
     private val tableName : String
         get() = className.apply { replaceRange(0,lastIndexOf(".") + 1, "") }

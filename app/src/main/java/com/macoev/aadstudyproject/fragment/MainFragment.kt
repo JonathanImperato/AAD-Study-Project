@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.distinctUntilChanged
 import androidx.navigation.fragment.findNavController
 import com.macoev.aadstudyproject.databinding.MainFragmentBinding
 import com.macoev.aadstudyproject.utils.EventObserver
@@ -16,7 +17,7 @@ import org.koin.core.component.KoinApiExtension
 class MainFragment : Fragment() {
 
     private lateinit var binding: MainFragmentBinding
-    private val model: UserViewModel by sharedViewModel()
+    private val viewModel: UserViewModel by sharedViewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -29,8 +30,8 @@ class MainFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        binding.viewModel = model
-        model.selectedUser.observe(requireActivity(), EventObserver {
+        binding.viewModel = viewModel
+        viewModel.selectedUser.distinctUntilChanged().observe(requireActivity(), EventObserver {
             findNavController().navigate(MainFragmentDirections.actionMainFragmentToUserDetailFragment())
         })
     }

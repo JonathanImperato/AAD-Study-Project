@@ -18,12 +18,12 @@ import java.time.Duration
 @KoinApiExtension
 class MainActivity : AppCompatActivity() {
 
-    private val model: UserViewModel by viewModel()
+    private val viewModel: UserViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
-        binding.viewModel = model
+        binding.viewModel = viewModel
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             syncServer()
         }

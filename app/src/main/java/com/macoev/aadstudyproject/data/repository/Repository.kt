@@ -1,19 +1,18 @@
 package com.macoev.aadstudyproject.data.repository
 
 import androidx.lifecycle.LiveData
-import com.macoev.aadstudyproject.data.User
 import kotlinx.coroutines.Job
 
-interface Repository {
-    fun getAllUsers(): LiveData<List<User>>
+interface Repository<E> {
+    fun getAll(): LiveData<List<E>>
 
-    fun insert(vararg users: User): Job?
+    fun insert(vararg users: E): Job?
 
-    fun delete(user: User): Job?
+    fun delete(e: E): Job?
 
-    fun findBy(name: String): LiveData<List<User>>
+    fun findBy(name: String): LiveData<List<E>>
 
-    fun findByIds(vararg ids: Int): LiveData<List<User>>
+    fun findByIds(vararg ids: Int): LiveData<List<E>>
 
     fun deleteAll()
 }

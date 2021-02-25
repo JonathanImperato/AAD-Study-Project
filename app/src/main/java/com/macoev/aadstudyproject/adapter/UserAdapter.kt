@@ -7,16 +7,16 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.macoev.aadstudyproject.R
-import com.macoev.aadstudyproject.data.User
+import com.macoev.aadstudyproject.data.entity.User
 import com.macoev.aadstudyproject.data.repository.Repository
 
-class UserAdapter(private val repository: Repository, private val tap: (User) -> Unit) :
+class UserAdapter(private val repository: Repository<User>, private val tap: (User) -> Unit) :
     RecyclerView.Adapter<UserViewHolder>() {
 
     private var data: ArrayList<User> = arrayListOf()
 
     init {
-        repository.getAllUsers().observeForever {
+        repository.getAll().observeForever {
             data.clear()
             data.addAll(it)
             notifyDataSetChanged()

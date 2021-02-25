@@ -1,12 +1,14 @@
 package com.macoev.aadstudyproject.data
 
 import android.content.Context
-import android.os.Build
-import androidx.annotation.RequiresApi
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
+import com.macoev.aadstudyproject.BuildConfig
+import com.macoev.aadstudyproject.data.dao.BaseDao
+import com.macoev.aadstudyproject.data.dao.UserDao
+import com.macoev.aadstudyproject.data.entity.User
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -46,8 +48,7 @@ internal abstract class AppDatabase : RoomDatabase() {
             override fun onOpen(db: SupportSQLiteDatabase) {
                 scope.launch {
                     INSTANCE?.userDao()?.run {
-                        if (findAll().value?.isNullOrEmpty() == true) {
-                            deleteAll()
+                        if (BuildConfig.DEBUG && isEmpty() == true) {
                             for (i in 0..10) {
                                 insertOrUpdate(User.createRandom())
                             }

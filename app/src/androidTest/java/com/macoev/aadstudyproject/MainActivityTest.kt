@@ -39,7 +39,7 @@ class MainActivityTest {
 
     @Before
     fun init() {
-        repository = RepositoryLocator.get(context)
+        repository = RepositoryLocator.getUser(context)
         repository.deleteAll()
     }
 

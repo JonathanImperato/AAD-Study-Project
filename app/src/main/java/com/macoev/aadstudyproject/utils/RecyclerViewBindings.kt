@@ -24,7 +24,6 @@ object RecyclerViewBindings {
                 }
                 return false
             }
-
         })
     }
 }

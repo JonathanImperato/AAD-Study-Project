@@ -23,6 +23,7 @@ open class Event<out T>(private val content: T?) {
      * Returns the content, even if it's already been handled.
      */
     fun getContent(): T? = content
+
 }
 
 open class EventObserver<T>(private val onEventChanged: (T) -> Unit) : Observer<Event<T?>?> {
