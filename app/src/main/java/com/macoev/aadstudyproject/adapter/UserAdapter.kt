@@ -25,13 +25,11 @@ class UserAdapter(private val repository: Repository<User>, private val tap: (Us
     companion object {
         private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<User>() {
             // The ID property identifies when items are the same.
-            override fun areItemsTheSame(oldItem: User, newItem: User) =
-                oldItem.id == newItem.id
+            override fun areItemsTheSame(oldItem: User, newItem: User) = oldItem.id == newItem.id
 
             // If you use the "==" operator, make sure that the object implements
             // .equals(). Alternatively, write custom data comparison logic here.
-            override fun areContentsTheSame(
-                oldItem: User, newItem: User) = oldItem == newItem
+            override fun areContentsTheSame(oldItem: User, newItem: User) = oldItem == newItem
         }
     }
 
@@ -47,8 +45,6 @@ class UserAdapter(private val repository: Repository<User>, private val tap: (Us
             itemView.setOnClickListener { tap(u) }
         }
     }
-
-
 }
 
 class UserViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
