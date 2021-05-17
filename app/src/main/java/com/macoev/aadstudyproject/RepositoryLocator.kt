@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.annotation.VisibleForTesting
 import com.macoev.aadstudyproject.data.AppDatabase
 import com.macoev.aadstudyproject.data.entity.User
+import com.macoev.aadstudyproject.data.network.UserApi
 import com.macoev.aadstudyproject.data.repository.Repository
 import com.macoev.aadstudyproject.data.repository.UserRepository
 import dagger.Module
@@ -20,8 +21,8 @@ object RepositoryLocator {
     var userRepository: Repository<User>? = null
         @VisibleForTesting set
 
-    fun getUser(app: Context): Repository<User> {
-        if (userRepository == null) userRepository = UserRepository(getUserDao(app))
+    fun getUser(app: Context, api: UserApi): Repository<User> {
+        if (userRepository == null) userRepository = UserRepository(getUserDao(app), api)
         return userRepository!!
     }
 

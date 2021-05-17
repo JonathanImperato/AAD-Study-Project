@@ -9,7 +9,8 @@ import com.macoev.aadstudyproject.data.network.UserApi
 import kotlinx.coroutines.*
 import javax.inject.Inject
 
-class UserRepository @Inject constructor(private val dao: UserDao, private val api: UserApi) : Repository<User> {
+class UserRepository @Inject constructor(private val dao: UserDao, private val api: UserApi) :
+    Repository<User> {
     private val scope = CoroutineScope(Job() + Dispatchers.IO)
 
     override fun getAll(): LiveData<List<User>> {
@@ -21,8 +22,12 @@ class UserRepository @Inject constructor(private val dao: UserDao, private val a
         dao.findAllByTime().toLiveData(pageSize = 10)
 
     override fun insert(vararg users: User) = scope.launch {
-        api.saveUser(*users)
-        dao.insertOrUpdate(*users)
+        try {
+            api.saveUser(*users)
+        } catch (e: Exception) {
+        } finally {
+            dao.insertOrUpdate(*users)
+        }
     }
 
     override fun delete(user: User) = scope.launch { dao.delete(user) }

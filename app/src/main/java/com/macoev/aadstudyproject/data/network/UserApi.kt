@@ -8,9 +8,7 @@ import javax.inject.Inject
 
 const val END_POINT_USER_KTOR = "/api/user"
 
-open class UserApi {
-
-    @Inject lateinit var client: HttpClient
+open class UserApi @Inject constructor(private val client: HttpClient) {
 
     suspend fun getUser(
         userId: String? = ""
