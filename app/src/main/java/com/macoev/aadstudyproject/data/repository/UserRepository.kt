@@ -28,8 +28,12 @@ class UserRepository(private val dao: UserDao) : Repository<User>, KoinComponent
 
     @KoinApiExtension
     override fun insert(vararg users: User) = scope.launch {
-        api.saveUser(*users)
-        dao.insertOrUpdate(*users)
+        try {
+            api.saveUser(*users)
+        } catch (e: Exception) {
+        } finally {
+            dao.insertOrUpdate(*users)
+        }
     }
 
     override fun delete(user: User) = scope.launch { dao.delete(user) }
