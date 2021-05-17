@@ -3,6 +3,7 @@ package com.macoev.aadstudyproject.activity
 import android.os.Build
 import android.os.Bundle
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
@@ -13,14 +14,15 @@ import com.macoev.aadstudyproject.databinding.ActivityMainBinding
 import com.macoev.aadstudyproject.viewmodel.UserViewModel
 import com.macoev.aadstudyproject.work.DownloadWork
 import com.macoev.aadstudyproject.work.RequestManager
-import org.koin.androidx.viewmodel.ext.android.viewModel
-import org.koin.core.component.KoinApiExtension
+import dagger.hilt.android.AndroidEntryPoint
 import java.time.Duration
+import javax.inject.Inject
 
-@KoinApiExtension
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
-    private val viewModel: UserViewModel by viewModel()
+    private val viewModel: UserViewModel by viewModels()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

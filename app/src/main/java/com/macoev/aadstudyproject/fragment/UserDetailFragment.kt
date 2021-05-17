@@ -5,16 +5,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import com.macoev.aadstudyproject.databinding.UserDetailFragmentBinding
 import com.macoev.aadstudyproject.viewmodel.UserViewModel
-import org.koin.androidx.viewmodel.ext.android.sharedViewModel
-import org.koin.core.component.KoinApiExtension
+import dagger.hilt.android.AndroidEntryPoint
 
-@KoinApiExtension
+@AndroidEntryPoint
 class UserDetailFragment : Fragment() {
 
     private lateinit var binding: UserDetailFragmentBinding
-    private val viewModel: UserViewModel by sharedViewModel()
+
+    private val viewModel: UserViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -25,8 +27,8 @@ class UserDetailFragment : Fragment() {
         return binding.root
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         binding.viewModel = viewModel
     }
 }

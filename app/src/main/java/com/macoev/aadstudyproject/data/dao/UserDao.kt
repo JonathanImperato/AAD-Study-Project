@@ -4,6 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.paging.DataSource
 import androidx.room.*
 import com.macoev.aadstudyproject.data.entity.User
+import dagger.hilt.EntryPoint
+import dagger.hilt.android.AndroidEntryPoint
 
 @Dao
 interface UserDao {

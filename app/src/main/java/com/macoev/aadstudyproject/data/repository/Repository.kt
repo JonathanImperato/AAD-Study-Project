@@ -2,9 +2,15 @@ package com.macoev.aadstudyproject.data.repository
 
 import androidx.lifecycle.LiveData
 import androidx.paging.PagedList
+import com.macoev.aadstudyproject.viewmodel.UserViewModel
+import dagger.Module
+import dagger.Provides
+import dagger.hilt.EntryPoint
+import dagger.hilt.InstallIn
 import kotlinx.coroutines.Job
 
 interface Repository<E> {
+
     fun getAll(): LiveData<List<E>>
 
     fun insert(vararg users: E): Job?

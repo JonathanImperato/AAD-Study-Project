@@ -15,7 +15,7 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
 @Database(entities = [User::class], version = 7)
-internal abstract class AppDatabase : RoomDatabase() {
+abstract class AppDatabase : RoomDatabase() {
 
     abstract fun userDao(): UserDao
 
