@@ -1,7 +1,11 @@
+@file:Suppress("EXPERIMENTAL_API_USAGE")
+
 package com.macoev.aadstudyproject.application
 
 import android.app.Application
 import com.macoev.aadstudyproject.RepositoryLocator
+import com.macoev.aadstudyproject.data.network.UserApi
+import com.macoev.aadstudyproject.data.network.getClient
 import com.macoev.aadstudyproject.viewmodel.UserViewModel
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -16,15 +20,18 @@ class App : Application() {
         startKoin {
             androidLogger()
             androidContext(this@App)
-            modules(listOf(viewModelModule, repositoryModule))
+            modules(listOf(viewModelModule, repositoryModule, networkModule))
         }
     }
 }
 
-@OptIn(KoinApiExtension::class)
 val viewModelModule = module {
     factory { UserViewModel(get()) }
 }
 val repositoryModule = module {
     factory { RepositoryLocator.getUser(get()) }
+}
+val networkModule = module {
+    factory { UserApi() }
+    factory { getClient() }
 }
