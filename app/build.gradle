@@ -2,13 +2,14 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-kapt'
+    id 'kotlinx-serialization'
     id 'androidx.navigation.safeargs'
     id 'dagger.hilt.android.plugin'
 }
 
 android {
-    compileSdkVersion 28
-    buildToolsVersion "28.0.3"
+    compileSdkVersion 30
+    buildToolsVersion '30.0.3'
     testOptions.unitTests.includeAndroidResources = true
 
     packagingOptions {
@@ -33,7 +34,7 @@ android {
     defaultConfig {
         applicationId "com.macoev.aadstudyproject"
         minSdkVersion 21
-        targetSdkVersion 28
+        targetSdkVersion 30
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -97,6 +98,11 @@ dependencies {
     // Hilt for Android
     implementation "com.google.dagger:hilt-android:$hilt_version"
     kapt "com.google.dagger:hilt-compiler:$hilt_version"
+    //Ktor
+    implementation 'io.ktor:ktor-client-android:1.5.0'
+    implementation 'io.ktor:ktor-client-serialization:1.5.0'
+    implementation 'org.jetbrains.kotlinx:kotlinx-serialization-json:1.2.0'
+    implementation 'io.ktor:ktor-client-logging-jvm:1.5.0'
 
     testImplementation 'org.junit.jupiter:junit-jupiter'
     testImplementation 'com.google.truth:truth:1.1.2'
