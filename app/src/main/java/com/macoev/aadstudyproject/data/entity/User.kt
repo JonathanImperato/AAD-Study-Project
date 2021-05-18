@@ -3,9 +3,20 @@ package com.macoev.aadstudyproject.data.entity
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
+@Serializable
 @Entity
-data class User(@PrimaryKey(autoGenerate = true) val id: Int? = null, @ColumnInfo(name = "full_name") var fullName: String = "", var time : Long = System.currentTimeMillis()){
+data class User(
+    @PrimaryKey(autoGenerate = true)
+    @SerialName("id")
+    val id: Int? = null,
+    @ColumnInfo(name = "full_name")
+    @SerialName("full_name")
+    var fullName: String = "",
+    var time: Long = System.currentTimeMillis()
+) {
 
     companion object {
         @JvmStatic

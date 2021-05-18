@@ -3,11 +3,12 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-kapt'
     id 'androidx.navigation.safeargs'
+    id 'kotlinx-serialization'
 }
 
 android {
-    compileSdkVersion 28
-    buildToolsVersion "28.0.3"
+    compileSdkVersion 30
+    buildToolsVersion '30.0.3'
     testOptions.unitTests.includeAndroidResources = true
 
     packagingOptions {
@@ -32,7 +33,7 @@ android {
     defaultConfig {
         applicationId "com.macoev.aadstudyproject"
         minSdkVersion 21
-        targetSdkVersion 28
+        targetSdkVersion 30
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -92,6 +93,12 @@ dependencies {
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
     //Paging
     implementation "androidx.paging:paging-runtime-ktx:$paging_version" // For Kotlin use paging-runtime-ktx
+
+    //Ktor
+    implementation 'io.ktor:ktor-client-android:1.5.0'
+    implementation 'io.ktor:ktor-client-serialization:1.5.0'
+    implementation 'org.jetbrains.kotlinx:kotlinx-serialization-json:1.2.0'
+    implementation 'io.ktor:ktor-client-logging-jvm:1.5.0'
 
     // Koin for Android
     implementation "org.koin:koin-android:$koin_version"
