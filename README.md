@@ -1,2 +1,3 @@
 # AAD-Study-Project
-Study project for AAD certification
+## Koin Branch
+This branch is an AAD branch variant to study [koin](https://github.com/InsertKoinIO/koin).
