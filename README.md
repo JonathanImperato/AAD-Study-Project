@@ -1,2 +1,3 @@
 # AAD-Study-Project
-Study project for AAD certification
+## Hilt Branch
+This branch is an AAD branch variant to study [hilt](https://github.com/google/dagger/tree/master/java/dagger/hilt).
