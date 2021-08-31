@@ -1,24 +1,19 @@
 package com.macoev.aadstudyproject.viewmodel
 
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.macoev.aadstudyproject.adapter.UserAdapter
 import com.macoev.aadstudyproject.data.entity.User
-import com.macoev.aadstudyproject.data.repository.Repository
 import com.macoev.aadstudyproject.data.repository.UserRepository
 import com.macoev.aadstudyproject.utils.Event
-import dagger.assisted.Assisted
-import dagger.assisted.AssistedInject
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-open class UserViewModel @Inject constructor(private val repository: UserRepository) : ViewModel() {
+open class UserViewModel @Inject constructor(  val repository: UserRepository) : ViewModel() {
 
-    private val tap: (User) -> Unit = { user -> selectedUser.value = Event(user) }
-
-    var adapter: UserAdapter = UserAdapter(repository, tap)
 
     var selectedUser = MutableLiveData<Event<User?>>()
         private set
@@ -34,5 +29,7 @@ open class UserViewModel @Inject constructor(private val repository: UserReposit
     fun findBy(name: String) = repository.findBy(name)
 
     fun findById(vararg ids: Int) = repository.findByIds(*ids)
+
+    fun login() = viewModelScope.launch { repository.api.login() }
 }
 

@@ -6,10 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.distinctUntilChanged
 import androidx.navigation.fragment.findNavController
+import com.macoev.aadstudyproject.adapter.UserAdapter
 import com.macoev.aadstudyproject.databinding.MainFragmentBinding
+import com.macoev.aadstudyproject.utils.Event
 import com.macoev.aadstudyproject.utils.EventObserver
 import com.macoev.aadstudyproject.viewmodel.UserViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -21,11 +22,11 @@ class MainFragment : Fragment() {
 
     private val viewModel: UserViewModel by activityViewModels()
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
+    private val adapter by lazy {
+        UserAdapter(viewModel.repository) { viewModel.selectedUser.value = Event(it) }
+    }
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = MainFragmentBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -33,6 +34,7 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.viewModel = viewModel
+        binding.rv.adapter = adapter
         viewModel.selectedUser.distinctUntilChanged().observe(requireActivity(), EventObserver {
             findNavController().navigate(MainFragmentDirections.actionMainFragmentToUserDetailFragment())
         })

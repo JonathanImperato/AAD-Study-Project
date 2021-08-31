@@ -9,7 +9,7 @@ import com.macoev.aadstudyproject.data.network.UserApi
 import kotlinx.coroutines.*
 import javax.inject.Inject
 
-class UserRepository @Inject constructor(private val dao: UserDao, private val api: UserApi) :
+class UserRepository @Inject constructor(private val dao: UserDao, val api: UserApi) :
     Repository<User> {
     private val scope = CoroutineScope(Job() + Dispatchers.IO)
 

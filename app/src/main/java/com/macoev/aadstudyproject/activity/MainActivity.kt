@@ -23,13 +23,12 @@ class MainActivity : AppCompatActivity() {
 
     private val viewModel: UserViewModel by viewModels()
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         ActivityMainBinding.inflate(layoutInflater).let {
             setContentView(it.root)
-            val navController =  (supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment).navController
+            val navController =  (supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment).navController //  findNavController(R.id.nav_host_fragment)
             val appBarConfiguration = AppBarConfiguration(navController.graph)
             it.toolbar.setupWithNavController(navController, appBarConfiguration)
             navController.addOnDestinationChangedListener { _, destination, _ ->
@@ -43,10 +42,10 @@ class MainActivity : AppCompatActivity() {
             it.viewModel = viewModel
         }
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            syncServer()
-        }
-
+        viewModel.login()
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+//            syncServer()
+//        }
     }
 
     @RequiresApi(Build.VERSION_CODES.O)

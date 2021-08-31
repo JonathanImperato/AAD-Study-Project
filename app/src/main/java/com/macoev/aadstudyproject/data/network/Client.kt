@@ -33,7 +33,6 @@ object Client {
                 isLenient = true
                 ignoreUnknownKeys = true
             })
-
             engine {
                 connectTimeout = TIME_OUT
                 socketTimeout = TIME_OUT
@@ -57,6 +56,9 @@ object Client {
 
         install(DefaultRequest) {
             header(HttpHeaders.ContentType, ContentType.Application.Json)
+            header(HttpHeaders.ContentType, ContentType.Application.FormUrlEncoded)
+            header(HttpHeaders.UserAgent, "App")
+            //header(HttpHeaders.ContentType, ContentType.Application.Any)
         }
     }
 }
